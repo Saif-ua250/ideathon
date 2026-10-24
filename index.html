@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>ZeroDrop OPAC</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./"><span class="brand-mark">Z</span><span>ZeroDrop <b>OPAC</b></span></a>
+      <nav><a href="#search">Search</a><a href="#benchmark">Benchmark</a><a href="#catalogue">Catalogue</a></nav>
+      <span class="status-pill"><i></i> Authority-grounded</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">P04 · NO RESULTS FOUND</div>
+        <h1>Search beyond spelling.<br /><em>Never beyond the catalogue.</em></h1>
+        <p class="hero-copy">A deterministic search middleware for Koha MARC21 holdings and Indian ETDs. Every result is a verified local record—no generated books, no invented editions.</p>
+        <div class="hero-stats"><span><strong>5</strong> deterministic stages</span><span><strong>0</strong> hallucinated holdings</span><span><strong>20</strong> benchmark queries</span></div>
+      </section>
+
+      <section id="search" class="panel search-panel">
+        <div class="panel-heading"><div><span class="section-kicker">LIVE CATALOGUE SEARCH</span><h2>What are you looking for?</h2></div><span id="authority-state" class="micro-status">LCSH: checking…</span></div>
+        <form id="search-form" class="search-form">
+          <div class="search-input-wrap"><span>⌕</span><input id="query" autocomplete="off" placeholder='Try “chakaravarthy power electrnics”, “CLRS”, or “self driving car thesis”' /><button type="button" id="clear-query" aria-label="Clear">×</button></div>
+          <button class="primary-button" type="submit">Resolve query <span>→</span></button>
+        </form>
+        <div class="suggestions"><span>Try a judge query:</span><button data-query="CLRS">CLRS</button><button data-query="chakaravarthy power electrnics">chakaravarthy power electrnics</button><button data-query="self driving car thesis">self driving car thesis</button><button data-query="heart attack">heart attack</button></div>
+      </section>
+
+      <section id="results" class="results-section hidden">
+        <div class="results-summary"><div><span class="section-kicker">RESOLUTION TRACE</span><h2 id="result-title">Results</h2><p id="result-subtitle"></p></div><span id="result-count" class="count-badge"></span></div>
+        <div id="trace" class="trace"></div>
+        <div id="result-grid" class="result-grid"></div>
+        <div id="empty-state" class="empty-card hidden"></div>
+      </section>
+
+      <section id="benchmark" class="panel benchmark-panel">
+        <div class="panel-heading"><div><span class="section-kicker">MEASURED EVALUATION</span><h2>ZeroDrop vs strict OPAC</h2></div><button id="run-benchmark" class="secondary-button">Run 20-query benchmark <span>↗</span></button></div>
+        <p class="panel-copy">The benchmark measures recall against this verified demo catalogue. Strict OPAC only matches literal indexed terms; ZeroDrop applies the five deterministic stages.</p>
+        <div id="benchmark-results" class="benchmark-results">
+          <div class="metric"><strong id="strict-score">—</strong><span>Strict OPAC recall</span></div><div class="metric accent"><strong id="zero-score">—</strong><span>ZeroDrop recall</span></div><div class="metric"><strong id="lift-score">—</strong><span>Recall lift</span></div>
+        </div>
+        <div id="benchmark-table" class="table-wrap hidden"></div>
+      </section>
+
+      <section id="catalogue" class="panel catalogue-panel">
+        <div class="panel-heading"><div><span class="section-kicker">VERIFIED HOLDINGS</span><h2>Koha MARC21 + IITD ETD records</h2></div><span class="micro-status">Local source of truth</span></div>
+        <div id="catalogue-table" class="table-wrap"></div>
+      </section>
+    </main>
+    <footer><span>ZeroDrop OPAC · deterministic search middleware</span><span>Demo data only · connect your Koha API for production</span></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>
